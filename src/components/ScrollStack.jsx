@@ -369,11 +369,18 @@ const ScrollStack = ({
 
     window.addEventListener('resize', handleResize);
 
+    const t1 = setTimeout(handleResize, 100);
+    const t2 = setTimeout(handleResize, 400);
+    const t3 = setTimeout(handleResize, 1000);
+
     return () => {
       window.removeEventListener('resize', handleResize);
       scrollContainers.forEach(el => {
         el.removeEventListener('scroll', handleNativeScroll);
       });
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
