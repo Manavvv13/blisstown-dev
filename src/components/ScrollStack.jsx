@@ -298,7 +298,17 @@ const ScrollStack = ({
       endElementOffsetRef.current = getElementOffset(endElement);
     }
 
+    const handleNativeScroll = () => {
+      updateCardTransforms();
+    };
+
     setupLenis();
+
+    if (useWindowScroll) {
+      window.addEventListener('scroll', handleNativeScroll, { passive: true });
+    } else if (scroller) {
+      scroller.addEventListener('scroll', handleNativeScroll, { passive: true });
+    }
 
     updateCardTransforms();
 
@@ -339,6 +349,11 @@ const ScrollStack = ({
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (useWindowScroll) {
+        window.removeEventListener('scroll', handleNativeScroll);
+      } else {
+        scroller?.removeEventListener('scroll', handleNativeScroll);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
