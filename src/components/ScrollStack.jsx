@@ -3,7 +3,11 @@ import Lenis from 'lenis';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }) => (
-  <div className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</div>
+  <div className={`scroll-stack-card ${itemClassName}`.trim()}>
+    <div className="scroll-stack-card-inner" style={{ width: '100%', height: '100%' }}>
+      {children}
+    </div>
+  </div>
 );
 
 const ScrollStack = ({
@@ -150,9 +154,17 @@ const ScrollStack = ({
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
         const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : '';
 
+        // Apply 3D transforms & opacity to outer container
         card.style.transform = transform;
-        card.style.filter = filter;
+        card.style.webkitTransform = transform;
         card.style.opacity = newTransform.opacity;
+
+        // Apply blur filter to inner wrapper container to avoid WebKit 3D rendering bugs
+        const inner = card.querySelector('.scroll-stack-card-inner') || card.firstElementChild;
+        if (inner) {
+          inner.style.filter = filter;
+          inner.style.webkitFilter = filter;
+        }
 
         lastTransformsRef.current.set(i, newTransform);
       }
