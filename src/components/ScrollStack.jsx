@@ -58,8 +58,9 @@ const ScrollStack = ({
       const rootScroll = document.getElementById('root')?.scrollTop || 0;
       const appScroll = document.querySelector('.app-container')?.scrollTop || 0;
       const mainScroll = document.querySelector('main')?.scrollTop || 0;
+      const lenisScroll = lenisRef.current ? lenisRef.current.scroll : 0;
       return {
-        scrollTop: Math.max(winScroll, scrollerScroll, rootScroll, appScroll, mainScroll),
+        scrollTop: Math.max(winScroll, scrollerScroll, rootScroll, appScroll, mainScroll, lenisScroll),
         containerHeight: window.innerHeight,
         scrollContainer: document.documentElement
       };
@@ -80,7 +81,8 @@ const ScrollStack = ({
         const rootScroll = document.getElementById('root')?.scrollTop || 0;
         const appScroll = document.querySelector('.app-container')?.scrollTop || 0;
         const mainScroll = document.querySelector('main')?.scrollTop || 0;
-        const currentScroll = Math.max(winScroll, rootScroll, appScroll, mainScroll);
+        const lenisScroll = lenisRef.current ? lenisRef.current.scroll : 0;
+        const currentScroll = Math.max(winScroll, rootScroll, appScroll, mainScroll, lenisScroll);
         return rect.top + currentScroll;
       } else {
         return element.offsetTop;
@@ -272,11 +274,7 @@ const ScrollStack = ({
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const cards = Array.from(
-      useWindowScroll
-        ? document.querySelectorAll('.scroll-stack-card')
-        : scroller.querySelectorAll('.scroll-stack-card')
-    );
+    const cards = Array.from(scroller.querySelectorAll('.scroll-stack-card'));
 
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
@@ -301,9 +299,7 @@ const ScrollStack = ({
       card.style.webkitPerspective = '1000px';
     });
 
-    const endElement = useWindowScroll
-      ? document.querySelector('.scroll-stack-end')
-      : scroller.querySelector('.scroll-stack-end');
+    const endElement = scroller.querySelector('.scroll-stack-end');
     if (endElement) {
       endElementOffsetRef.current = getElementOffset(endElement);
     }
@@ -312,25 +308,24 @@ const ScrollStack = ({
       updateCardTransforms();
     };
 
+    const handleCapturedScroll = (e) => {
+      const target = e.target;
+      if (target && target !== document && target !== window && target !== document.documentElement && target !== document.body) {
+        updateCardTransforms(target.scrollTop);
+      } else {
+        updateCardTransforms();
+      }
+    };
+
     try {
       setupLenis();
     } catch (err) {
       console.warn("Lenis failed to initialize:", err);
     }
 
-    const scrollContainers = [
-      window,
-      document,
-      document.body,
-      document.getElementById('root'),
-      document.querySelector('.app-container'),
-      document.querySelector('main'),
-      scroller
-    ].filter(Boolean);
-
-    scrollContainers.forEach(el => {
-      el.addEventListener('scroll', handleNativeScroll, { passive: true });
-    });
+    // Attach passive scroll listeners
+    window.addEventListener('scroll', handleCapturedScroll, { capture: true, passive: true });
+    window.addEventListener('scroll', handleNativeScroll, { passive: true });
 
     updateCardTransforms();
 
@@ -350,9 +345,7 @@ const ScrollStack = ({
 
       initialOffsetsRef.current = currentCards.map(card => getElementOffset(card));
 
-      const currentEndElement = useWindowScroll
-        ? document.querySelector('.scroll-stack-end')
-        : scrollerRef.current?.querySelector('.scroll-stack-end');
+      const currentEndElement = scrollerRef.current?.querySelector('.scroll-stack-end');
       if (currentEndElement) {
         endElementOffsetRef.current = getElementOffset(currentEndElement);
       }
@@ -369,15 +362,28 @@ const ScrollStack = ({
 
     window.addEventListener('resize', handleResize);
 
+    // Setup ResizeObserver to handle lazy-loaded images, dynamic fonts or layout reflows
+    let resizeTimeout;
+    const resizeObserver = new ResizeObserver(() => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResize, 50);
+    });
+
+    cards.forEach(card => {
+      const inner = card.querySelector('.scroll-stack-card-inner') || card;
+      resizeObserver.observe(inner);
+    });
+
     const t1 = setTimeout(handleResize, 100);
     const t2 = setTimeout(handleResize, 400);
     const t3 = setTimeout(handleResize, 1000);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      scrollContainers.forEach(el => {
-        el.removeEventListener('scroll', handleNativeScroll);
-      });
+      window.removeEventListener('scroll', handleCapturedScroll, { capture: true });
+      window.removeEventListener('scroll', handleNativeScroll);
+      resizeObserver.disconnect();
+      clearTimeout(resizeTimeout);
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
