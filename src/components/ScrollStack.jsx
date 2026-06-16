@@ -104,13 +104,19 @@ const ScrollStack = ({
       const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
       let blur = 0;
+      let opacity = 1;
       if (blurAmount) {
         for (let j = i + 1; j < cardsRef.current.length; j++) {
           const jCardTop = initialOffsetsRef.current[j] || 0;
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
           const jTriggerEnd = jCardTop - scaleEndPositionPx;
           const jProgress = calculateProgress(scrollTop, jTriggerStart, jTriggerEnd);
-          blur += jProgress * blurAmount;
+          
+          // Reaches full blur and fade effect when scrolled halfway (jProgress = 0.5)
+          const effectProgress = Math.min(1, jProgress * 2);
+          
+          blur += effectProgress * blurAmount;
+          opacity *= (1 - effectProgress * 0.95); // fade down to 5% opacity
         }
       }
 
@@ -127,7 +133,8 @@ const ScrollStack = ({
         translateY: Math.round(translateY * 100) / 100,
         scale: Math.round(scale * 1000) / 1000,
         rotation: Math.round(rotation * 100) / 100,
-        blur: Math.round(blur * 100) / 100
+        blur: Math.round(blur * 100) / 100,
+        opacity: Math.round(opacity * 100) / 100
       };
 
       const lastTransform = lastTransformsRef.current.get(i);
@@ -136,7 +143,8 @@ const ScrollStack = ({
         lastTransform.translateY !== newTransform.translateY ||
         lastTransform.scale !== newTransform.scale ||
         lastTransform.rotation !== newTransform.rotation ||
-        lastTransform.blur !== newTransform.blur;
+        lastTransform.blur !== newTransform.blur ||
+        lastTransform.opacity !== newTransform.opacity;
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
@@ -144,6 +152,7 @@ const ScrollStack = ({
 
         card.style.transform = transform;
         card.style.filter = filter;
+        card.style.opacity = newTransform.opacity;
 
         lastTransformsRef.current.set(i, newTransform);
       }
