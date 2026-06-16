@@ -51,17 +51,22 @@ const ScrollStack = ({
   }, []);
 
   const getScrollData = useCallback(() => {
+    const scroller = scrollerRef.current;
     if (useWindowScroll) {
+      const winScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const scrollerScroll = scroller ? scroller.scrollTop : 0;
+      const rootScroll = document.getElementById('root')?.scrollTop || 0;
+      const appScroll = document.querySelector('.app-container')?.scrollTop || 0;
+      const mainScroll = document.querySelector('main')?.scrollTop || 0;
       return {
-        scrollTop: window.scrollY,
+        scrollTop: Math.max(winScroll, scrollerScroll, rootScroll, appScroll, mainScroll),
         containerHeight: window.innerHeight,
         scrollContainer: document.documentElement
       };
     } else {
-      const scroller = scrollerRef.current;
       return {
-        scrollTop: scroller.scrollTop,
-        containerHeight: scroller.clientHeight,
+        scrollTop: scroller ? scroller.scrollTop : 0,
+        containerHeight: scroller ? scroller.clientHeight : 0,
         scrollContainer: scroller
       };
     }
@@ -71,7 +76,12 @@ const ScrollStack = ({
     element => {
       if (useWindowScroll) {
         const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
+        const winScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const rootScroll = document.getElementById('root')?.scrollTop || 0;
+        const appScroll = document.querySelector('.app-container')?.scrollTop || 0;
+        const mainScroll = document.querySelector('main')?.scrollTop || 0;
+        const currentScroll = Math.max(winScroll, rootScroll, appScroll, mainScroll);
+        return rect.top + currentScroll;
       } else {
         return element.offsetTop;
       }
@@ -302,13 +312,25 @@ const ScrollStack = ({
       updateCardTransforms();
     };
 
-    setupLenis();
-
-    if (useWindowScroll) {
-      window.addEventListener('scroll', handleNativeScroll, { passive: true });
-    } else if (scroller) {
-      scroller.addEventListener('scroll', handleNativeScroll, { passive: true });
+    try {
+      setupLenis();
+    } catch (err) {
+      console.warn("Lenis failed to initialize:", err);
     }
+
+    const scrollContainers = [
+      window,
+      document,
+      document.body,
+      document.getElementById('root'),
+      document.querySelector('.app-container'),
+      document.querySelector('main'),
+      scroller
+    ].filter(Boolean);
+
+    scrollContainers.forEach(el => {
+      el.addEventListener('scroll', handleNativeScroll, { passive: true });
+    });
 
     updateCardTransforms();
 
@@ -349,11 +371,9 @@ const ScrollStack = ({
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (useWindowScroll) {
-        window.removeEventListener('scroll', handleNativeScroll);
-      } else {
-        scroller?.removeEventListener('scroll', handleNativeScroll);
-      }
+      scrollContainers.forEach(el => {
+        el.removeEventListener('scroll', handleNativeScroll);
+      });
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
