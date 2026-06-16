@@ -105,18 +105,12 @@ const ScrollStack = ({
 
       let blur = 0;
       if (blurAmount) {
-        let topCardIndex = 0;
-        for (let j = 0; j < cardsRef.current.length; j++) {
+        for (let j = i + 1; j < cardsRef.current.length; j++) {
           const jCardTop = initialOffsetsRef.current[j] || 0;
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
-          if (scrollTop >= jTriggerStart) {
-            topCardIndex = j;
-          }
-        }
-
-        if (i < topCardIndex) {
-          const depthInStack = topCardIndex - i;
-          blur = Math.max(0, depthInStack * blurAmount);
+          const jTriggerEnd = jCardTop - scaleEndPositionPx;
+          const jProgress = calculateProgress(scrollTop, jTriggerStart, jTriggerEnd);
+          blur += jProgress * blurAmount;
         }
       }
 
