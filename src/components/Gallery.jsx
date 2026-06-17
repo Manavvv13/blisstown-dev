@@ -36,7 +36,7 @@ const Gallery = () => {
         <section className="gallery-section reveal-up">
             <div className="gallery-header">
                 <span className="gallery-subtitle">AESTHETIC LIVING</span>
-                <h2 className="gallery-main-title">Signature Sanctuaries</h2>
+                <h2 className="gallery-main-title">Crafted Interiors</h2>
                 <div className="gallery-header-line"></div>
             </div>
             <div className="circular-gallery-wrapper">
