@@ -15,11 +15,11 @@ const Hero = () => {
                 <img 
                     alt="Luxury Property Facade" 
                     className="hero__image" 
-                    src="/images/hero bg new.png"
+                    src="/images/Hero bg 2.png"
                 />
                 <video 
                     className={`hero__video ${videoEnded ? 'hero__video--ended' : ''}`}
-                    src="/images/blisstown video.mp4"
+                    src="/images/blisstown video-1.mp4"
                     autoPlay
                     muted
                     playsInline
