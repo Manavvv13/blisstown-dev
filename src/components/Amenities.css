@@ -91,7 +91,7 @@
 
 /* Override ScrollStack card wrapper styles with original amenity card visuals */
 .amenities-stack-container .scroll-stack-card {
-    background: var(--surface);
+    background: rgba(20, 20, 20, 0.45);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--outline-variant);
