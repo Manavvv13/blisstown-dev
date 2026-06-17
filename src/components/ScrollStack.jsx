@@ -174,8 +174,8 @@ const ScrollStack = ({
         // Apply blur filter to inner wrapper container to avoid WebKit 3D rendering bugs
         const inner = card.querySelector('.scroll-stack-card-inner') || card.firstElementChild;
         if (inner) {
-          inner.style.filter = filter;
-          inner.style.webkitFilter = filter;
+          inner.style.filter = "";
+          inner.style.webkitFilter = "";
         }
 
         lastTransformsRef.current.set(i, newTransform);
