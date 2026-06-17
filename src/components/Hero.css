@@ -44,9 +44,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Dribbble Teal/Cyan Gradient overlay (reduced opacity at bottom-left to make logo visible) */
-    background: radial-gradient(circle at 25% 30%, rgba(11, 34, 45, 0.05) 0%, rgba(5, 16, 22, 0.35) 50%, rgba(5, 16, 22, 0) 80%),
-                linear-gradient(to bottom, rgba(5, 16, 22, 0.15) 0%, rgba(5, 16, 22, 0) 40%, rgba(9, 10, 15, 0) 75%, var(--background) 100%);
+    /* Very slight gradient on the left side only for text legibility on desktop */
+    background: linear-gradient(to right, rgba(9, 10, 15, 0.35) 0%, rgba(9, 10, 15, 0) 40%);
 }
 
 .hero__container {
@@ -67,7 +66,7 @@
     gap: 28px;
     text-align: left;
     padding-left: 0;
-    margin-left: -64px;
+    margin-left: 16px;
 }
 
 @media (max-width: 991px) {
@@ -103,7 +102,7 @@
 /* Main title from Reference screenshot */
 .hero__main-title {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 72px;
+    font-size: 60px;
     font-weight: 800;
     color: #ffffff;
     line-height: 1.05;
@@ -121,13 +120,13 @@
 
 @media (max-width: 991px) {
     .hero__main-title {
-        font-size: 54px;
+        font-size: 46px;
     }
 }
 
 @media (max-width: 576px) {
     .hero__main-title {
-        font-size: 36px;
+        font-size: 30px;
         line-height: 1.25;
     }
 }
@@ -222,13 +221,13 @@
 
 @media (max-width: 768px) {
     .hero__overlay {
-        background: linear-gradient(to bottom, rgba(9, 10, 15, 0.6) 0%, rgba(9, 10, 15, 0.1) 40%, rgba(9, 10, 15, 0.1) 75%, var(--background) 100%) !important;
+        background: linear-gradient(to bottom, rgba(9, 10, 15, 0.75) 0%, rgba(9, 10, 15, 0.3) 50%, rgba(9, 10, 15, 0) 80%, var(--background) 100%) !important;
     }
     .hero__image,
     .hero__video {
-        transform: scale(1.1) !important;
-        transform-origin: center top !important;
-        object-position: center top !important;
+        transform: translateY(25px) scale(1.2) !important;
+        transform-origin: center center !important;
+        object-position: 80% top !important;
     }
     .hero__container {
         padding-top: 120px;

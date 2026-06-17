@@ -326,6 +326,8 @@
 
 .pane-single-description {
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pane-single-description h4 {

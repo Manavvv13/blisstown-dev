@@ -140,7 +140,7 @@
     letter-spacing: -0.01em;
     color: #ffffff !important;
     text-decoration: none;
-    transition: opacity 0.25s ease;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     text-transform: none;
     position: relative;
     padding: 10px 16px;
@@ -150,17 +150,34 @@
 }
 
 .header__link::after {
-    display: none;
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 16px;
+    right: 16px;
+    height: 1.5px;
+    background-color: var(--secondary);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.header__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
 }
 
 .header__link:hover {
-    opacity: 0.7;
-    color: #ffffff !important;
+    color: var(--secondary) !important;
 }
 
 .header__link--active {
     color: #ffffff !important;
-    opacity: 1;
+}
+
+.header__link--active::after {
+    transform: scaleX(1);
+    background-color: #ffffff;
 }
 
 .header__link--mobile-only {
@@ -360,12 +377,11 @@
         width: 100%;
         gap: 8px;
         padding-top: 16px;
-        border-top: 1px solid transparent;
+        border-top: none;
         opacity: 0;
         transform: scale(0.95) translateY(-10px);
         transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                    border-color 0.65s ease;
+                    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
         pointer-events: none;
         height: 0;
         overflow: hidden;
@@ -376,10 +392,8 @@
         transform: scale(1) translateY(0);
         pointer-events: auto;
         height: auto;
-        border-top-color: var(--outline-variant);
         transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                    border-color 0.5s ease;
+                    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .header__link {
@@ -458,8 +472,9 @@
     }
 
     .floating-logo--menu-open {
-        top: 34px !important;
+        top: 24px !important; /* Re-align with close button */
+        left: 20px !important; /* Shift slightly left */
         z-index: 101 !important; /* Ensure it stays above the open header background */
-        transition: top 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 }

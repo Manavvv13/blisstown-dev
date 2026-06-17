@@ -34,7 +34,7 @@ const Introduction = () => {
                     <span className="font-subheading-lg intro-tag">About Us</span>
                     <div className="intro-image-wrapper">
                         <img 
-                            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" 
+                            src="/images/About us blisstown.png" 
                             alt="Luxury Architecture Facade" 
                             className="intro-image"
                         />
