@@ -55,7 +55,7 @@ const Amenities = () => {
         stackPosition="25%"
         baseScale={0.9}
         itemScale={0.03}
-        blurAmount={0}
+        blurAmount={100}
       >
         {amenitiesData.map((item, index) => (
           <ScrollStackItem key={index}>
