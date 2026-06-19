@@ -138,7 +138,7 @@ const Header = () => {
                         >
                             <button 
                                 className={`header__link header__dropdown-trigger ${
-                                    location.pathname === '/project' ? 'header__link--active' : ''
+                                    ['/project', '/completed-projects'].includes(location.pathname) ? 'header__link--active' : ''
                                 }`}
                             >
                                 Projects <span className="dropdown-arrow">▼</span>
@@ -146,8 +146,11 @@ const Header = () => {
                             
                             {projectDropdownOpen && (
                                 <div className="header__dropdown-menu glass-panel-heavy">
+                                    <Link className="header__dropdown-item" to="/completed-projects">
+                                        Completed Projects
+                                    </Link>
                                     <Link className="header__dropdown-item" to="/project">
-                                        JMDR Arihant Green
+                                        Ongoing Projects
                                     </Link>
                                 </div>
                             )}

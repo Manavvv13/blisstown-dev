@@ -339,16 +339,15 @@
 }
 
 /* Unit Plan Tab */
-.pane-dual-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+.unit-plan-wrapper {
+  max-width: 420px;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .pane-dual-layout {
-    grid-template-columns: 1fr;
-  }
+.unit-plan-image {
+  max-height: 400px;
+  object-fit: contain;
+  background: var(--surface-dim);
 }
 
 /* Lightbox Modal */

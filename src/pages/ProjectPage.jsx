@@ -40,11 +40,11 @@ const ProjectPage = () => {
       {/* Page Header */}
       <section className="project-header">
         <div className="container">
-          <h1 className="font-display-xl project-page-title reveal-up">Projects</h1>
+          <h1 className="font-display-xl project-page-title reveal-up">Ongoing Projects</h1>
           <nav className="project-breadcrumb reveal-up">
             <Link to="/" className="breadcrumb-item" style={{ textDecoration: 'none' }}>Home</Link>
             <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-item active">Projects</span>
+            <span className="breadcrumb-item active">Ongoing Projects</span>
           </nav>
         </div>
       </section>
@@ -181,35 +181,23 @@ const ProjectPage = () => {
               {/* Tab 3: Unit Plan */}
               {activeTab === 'unit' && (
                 <div className="tab-pane-content fade-in">
-                  <div className="pane-dual-layout">
-                    <div className="pane-image-wrapper">
+                  <div className="pane-single-layout">
+                    <div className="pane-image-wrapper unit-plan-wrapper">
                       <img 
                         src="/images/floor_plan1_blisstown.png" 
-                        alt="Floor Plan Layout 1" 
-                        className="pane-image"
+                        alt="Floor Plan Layout" 
+                        className="pane-image unit-plan-image"
                         onClick={() => openLightbox('/images/floor_plan1_blisstown.png')}
                       />
                       <div className="image-overlay-hint">
                         <span className="material-symbols-outlined">zoom_in</span>
-                        <span>Enlarge Plan A</span>
+                        <span>Enlarge Plan</span>
                       </div>
                     </div>
-                    <div className="pane-image-wrapper">
-                      <img 
-                        src="/images/floor_plan1_blisstown.png" 
-                        alt="Floor Plan Layout 2" 
-                        className="pane-image"
-                        onClick={() => openLightbox('/images/floor_plan1_blisstown.png')}
-                      />
-                      <div className="image-overlay-hint">
-                        <span className="material-symbols-outlined">zoom_in</span>
-                        <span>Enlarge Plan B</span>
-                      </div>
+                    <div className="pane-single-description text-center">
+                      <h4 className="font-headline-md">Unit Floor Plans</h4>
+                      <p className="font-body-md">Luxury apartments designed with maximum spatial efficiency. Click plans to zoom.</p>
                     </div>
-                  </div>
-                  <div className="pane-single-description text-center" style={{ marginTop: '30px' }}>
-                    <h4 className="font-headline-md">Unit Floor Plans</h4>
-                    <p className="font-body-md">Luxury apartments designed with maximum spatial efficiency. Click plans to zoom.</p>
                   </div>
                 </div>
               )}

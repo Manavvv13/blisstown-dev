@@ -11,6 +11,7 @@ import ManagementTeam from './pages/ManagementTeam';
 import QualityPolicy from './pages/QualityPolicy';
 import SafetyPolicy from './pages/SafetyPolicy';
 import ProjectPage from './pages/ProjectPage';
+import CompletedProjects from './pages/CompletedProjects';
 import Contact from './pages/Contact';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
@@ -84,6 +85,7 @@ function App() {
             <Route path="/quality-policy" element={<QualityPolicy />} />
             <Route path="/safety-policy" element={<SafetyPolicy />} />
             <Route path="/project" element={<ProjectPage />} />
+            <Route path="/completed-projects" element={<CompletedProjects />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogDetailPage />} />
