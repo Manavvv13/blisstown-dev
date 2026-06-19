@@ -35,17 +35,14 @@ const Amenities = () => {
   return (
     <section className="amenities-section" id="about" ref={sectionRef}>
       <div className="amenities-layout container">
-        {/* Left Sidebar - Sticky Header */}
-        <div className="amenities-sidebar reveal-up">
+        {/* Centered Header */}
+        <div className="amenities-header reveal-up">
           <span className="font-subheading-lg text-gold">The Art of Living</span>
           <h2 className="amenities-title">Exclusive Services</h2>
           <div className="amenities-divider"></div>
-          <p className="amenities-sidebar-desc">
-            We design from scratch shaped by your vision, not a predefined template.
-          </p>
         </div>
 
-        {/* Right Content - Service Rows */}
+        {/* Service Rows */}
         <div className="amenities-services">
           {amenitiesData.map((item, index) => (
             <div className="amenity-row reveal-up" key={index}>

@@ -54,7 +54,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <div className="footer-copyright">
-            © 2024 Bliss Town Developers. All rights reserved<Link to="/admin" className="hidden-admin-link">.</Link>
+            © 2026 All rights reserved<Link to="/admin" className="hidden-admin-link">.</Link>
           </div>
           <div className="footer-legal">
             <a href="#" className="footer-link-bottom">Legal</a>
