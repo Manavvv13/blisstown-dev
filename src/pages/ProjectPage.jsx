@@ -160,19 +160,19 @@ const ProjectPage = () => {
                   <div className="pane-single-layout">
                     <div className="pane-image-wrapper site-plan-wrapper">
                       <img 
-                        src="/images/siteplan.png" 
-                        alt="Site Map" 
+                        src="/images/Master Plan Image.jpg" 
+                        alt="Master Plan" 
                         className="pane-image site-plan-image"
-                        onClick={() => openLightbox('/images/siteplan.png')}
+                        onClick={() => openLightbox('/images/Master Plan Image.jpg')}
                       />
                       <div className="image-overlay-hint">
                         <span className="material-symbols-outlined">zoom_in</span>
-                        <span>View Full Site Plan</span>
+                        <span>View Full Master Plan</span>
                       </div>
                     </div>
                     <div className="pane-single-description text-center">
-                      <h4 className="font-headline-md">Architectural Site Plan</h4>
-                      <p className="font-body-md">Click the diagram above to open the high-resolution site layout model.</p>
+                      <h4 className="font-headline-md">Architectural Master Plan</h4>
+                      <p className="font-body-md">Click the diagram above to open the high-resolution master layout model.</p>
                     </div>
                   </div>
                 </div>
@@ -181,23 +181,35 @@ const ProjectPage = () => {
               {/* Tab 3: Unit Plan */}
               {activeTab === 'unit' && (
                 <div className="tab-pane-content fade-in">
-                  <div className="pane-single-layout">
+                  <div className="pane-dual-layout">
                     <div className="pane-image-wrapper unit-plan-wrapper">
                       <img 
-                        src="/images/floor_plan1_blisstown.png" 
-                        alt="Floor Plan Layout" 
+                        src="/images/2BHK Image.jpg" 
+                        alt="2 BHK Floor Plan" 
                         className="pane-image unit-plan-image"
-                        onClick={() => openLightbox('/images/floor_plan1_blisstown.png')}
+                        onClick={() => openLightbox('/images/2BHK Image.jpg')}
                       />
                       <div className="image-overlay-hint">
                         <span className="material-symbols-outlined">zoom_in</span>
-                        <span>Enlarge Plan</span>
+                        <span>Enlarge 2 BHK Plan</span>
                       </div>
                     </div>
-                    <div className="pane-single-description text-center">
-                      <h4 className="font-headline-md">Unit Floor Plans</h4>
-                      <p className="font-body-md">Luxury apartments designed with maximum spatial efficiency. Click plans to zoom.</p>
+                    <div className="pane-image-wrapper unit-plan-wrapper">
+                      <img 
+                        src="/images/4BHK Image.jpg" 
+                        alt="4 BHK Floor Plan" 
+                        className="pane-image unit-plan-image"
+                        onClick={() => openLightbox('/images/4BHK Image.jpg')}
+                      />
+                      <div className="image-overlay-hint">
+                        <span className="material-symbols-outlined">zoom_in</span>
+                        <span>Enlarge 4 BHK Plan</span>
+                      </div>
                     </div>
+                  </div>
+                  <div className="pane-single-description text-center" style={{ marginTop: '30px' }}>
+                    <h4 className="font-headline-md">Unit Floor Plans</h4>
+                    <p className="font-body-md">Luxury apartments designed with maximum spatial efficiency. Click plans to zoom.</p>
                   </div>
                 </div>
               )}

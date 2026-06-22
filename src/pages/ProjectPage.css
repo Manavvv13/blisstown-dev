@@ -208,6 +208,7 @@
   overflow: hidden;
   border: 1px solid var(--outline);
   cursor: zoom-in;
+  border-radius: 24px; /* rounded corners for all tab images */
 }
 
 .pane-image {
@@ -339,15 +340,39 @@
 }
 
 /* Unit Plan Tab */
-.unit-plan-wrapper {
-  max-width: 420px;
+.pane-dual-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .pane-dual-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.unit-plan-wrapper {
+  max-width: 100%;
+  width: 100%;
+  height: 480px; /* makes both boxes exactly even in height */
+  background: #ffffff; /* matches the floor plans white background to remove dark margins */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px; /* rounded corners */
+  overflow: hidden;
+}
+
 .unit-plan-image {
-  max-height: 400px;
-  object-fit: contain;
-  background: var(--surface-dim);
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* displays floor plans perfectly without stretching */
+  background: #ffffff;
 }
 
 /* Lightbox Modal */
@@ -413,3 +438,71 @@
     transform: translateY(0);
   }
 }
+
+/* Responsive Adjustments for Mobile & Tablets */
+@media (max-width: 768px) {
+  .project-header {
+    padding: 120px 0 50px 0;
+  }
+  
+  .project-page-title {
+    font-size: 38px !important;
+    line-height: 1.2;
+  }
+
+  .project-intro-block {
+    margin-bottom: 40px;
+  }
+
+  .project-subtitle {
+    font-size: 28px;
+  }
+
+  .project-group-company {
+    font-size: 18px;
+  }
+
+  .showcase-tab {
+    padding: 16px;
+  }
+
+  .showcase-content {
+    padding: 24px 16px;
+  }
+
+  .unit-plan-wrapper {
+    height: 380px; /* even height on tablets */
+  }
+
+  .site-plan-image {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-header {
+    padding: 100px 0 40px 0;
+  }
+  
+  .project-page-title {
+    font-size: 32px !important;
+  }
+
+  .unit-plan-wrapper {
+    height: 280px; /* smaller heights on phone screens */
+    border-radius: 16px;
+  }
+
+  .site-plan-image {
+    max-height: 260px;
+  }
+
+  .pane-image-wrapper {
+    border-radius: 16px;
+  }
+  
+  .desc-card {
+    padding: 24px;
+  }
+}
+

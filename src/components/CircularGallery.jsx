@@ -316,17 +316,18 @@ class Media {
 
     const x = this.plane.position.x;
     const H = this.viewport.width / 2;
+    const bendVal = this.effectiveBend !== undefined ? this.effectiveBend : this.bend;
 
-    if (this.bend === 0) {
+    if (bendVal === 0) {
       this.plane.position.y = 0;
       this.plane.rotation.z = 0;
     } else {
-      const B_abs = Math.abs(this.bend);
+      const B_abs = Math.abs(bendVal);
       const R = (H * H + B_abs * B_abs) / (2 * B_abs);
       const effectiveX = Math.min(Math.abs(x), H);
 
       const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
-      if (this.bend > 0) {
+      if (bendVal > 0) {
         this.plane.position.y = -arc;
         this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
       } else {
@@ -360,11 +361,39 @@ class Media {
         this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
       }
     }
-    this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    
+    // Scale bend dynamically based on screen width to prevent extreme rotation on smaller screens
+    if (this.screen.width < 480) {
+      this.effectiveBend = 1.2; // Beautiful curved look matching laptop version on mobile
+    } else if (this.screen.width < 1024) {
+      this.effectiveBend = 1.6; // Medium curve on tablet
+    } else {
+      this.effectiveBend = this.bend; // Original curve on desktop
+    }
+    
+    // Calculate card width as a percentage of viewport width based on screen width
+    let widthPct = 0.22; // Desktop
+    if (this.screen.width < 480) {
+      widthPct = 0.46; // Phones (approx. 46% of width)
+    } else if (this.screen.width < 1024) {
+      widthPct = 0.32; // Tablets
+    }
+    
+    this.plane.scale.x = this.viewport.width * widthPct;
+    // Maintain a clean 0.77 aspect ratio (700/900) so the card is never squished
+    this.plane.scale.y = this.plane.scale.x / 0.77;
+    
+    // Ensure height does not exceed 65% of viewport height (to prevent clipping vertically)
+    const maxHeight = this.viewport.height * 0.65;
+    if (this.plane.scale.y > maxHeight) {
+      this.plane.scale.y = maxHeight;
+      this.plane.scale.x = this.plane.scale.y * 0.77;
+    }
+    
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-    this.padding = 2;
+    
+    // Padding proportional to card width for perfect spacing on all devices
+    this.padding = this.plane.scale.x * 0.45; // slightly wider gap to prevent overlaps on small screens
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;

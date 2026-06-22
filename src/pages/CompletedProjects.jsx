@@ -9,7 +9,7 @@ const completedProjects = [
     location: 'Sector 75, Noida',
     icon: 'domain',
     status: 'Delivered on Time',
-    image: '/images/img 1.jpeg',
+    image: '/images/Blisstown 2.svg',
     description: 'A benchmark of luxury living in Sector 75, Noida, Maxblis Grand Kingston offers exquisitely designed 2, 3, and 4 BHK premium apartments. Designed for modern families, it boasts lush landscapes, wide open spaces, and premium infrastructure.',
     details: [
       { label: 'Total Units', value: '480 Residences' },
@@ -24,7 +24,7 @@ const completedProjects = [
     location: 'Sector 75, Noida',
     icon: 'location_city',
     status: 'Delivered on Time',
-    image: '/images/img 2.jpeg',
+    image: '/images/Blisstown 3.svg',
     description: 'Maxblis Grand Wellington stands as a testament to high-quality construction and architectural finesse. The project provides beautifully ventilated spacious homes surrounded by nature, with excellent connectivity to major business hubs.',
     details: [
       { label: 'Total Units', value: '350 Residences' },
@@ -39,7 +39,7 @@ const completedProjects = [
     location: 'Sector 75, Noida',
     icon: 'home_work',
     status: 'Delivered on Time',
-    image: '/images/img 3.jpeg',
+    image: '/images/Blisstown 1.svg',
     description: 'Inspired by classic architectural lines, Maxblis White House offers an elite community experience with high-end apartments and top-tier amenities. Featuring large balconies and modern smart-home layouts, it provides absolute comfort.',
     details: [
       { label: 'Total Units', value: '220 Residences' },
@@ -142,17 +142,6 @@ const CompletedProjects = () => {
                 }}
               >
                 <img src={project.image} alt={project.name} className="completed-card-bg-image" />
-                <div className="completed-card-gradient-overlay"></div>
-                <div className="completed-card-content">
-                  <div className="completed-card-icon">
-                    <span className="material-symbols-outlined">{project.icon}</span>
-                  </div>
-                  <h3 className="completed-card-title">{project.name}</h3>
-                  <p className="completed-card-location">{project.location}</p>
-                  <div className="completed-badge-container">
-                    <span className="completed-badge">{project.status}</span>
-                  </div>
-                </div>
                 <div className="card-click-hint">
                   <span>View Details</span>
                   <span className="material-symbols-outlined">arrow_forward</span>
@@ -199,19 +188,6 @@ const CompletedProjects = () => {
               <div className="completed-modal-info">
                 <span className="completed-modal-subtitle">{selectedProject.location}</span>
                 <h2 className="completed-modal-title">{selectedProject.name}</h2>
-                <div className="completed-modal-badge-container">
-                  <span className="completed-modal-badge">{selectedProject.status}</span>
-                </div>
-                <p className="completed-modal-description">{selectedProject.description}</p>
-                
-                <div className="completed-modal-details-list">
-                  {selectedProject.details.map((detail, index) => (
-                    <div className="completed-modal-detail-item" key={index}>
-                      <span className="completed-modal-detail-label">{detail.label}</span>
-                      <span className="completed-modal-detail-value">{detail.value}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
