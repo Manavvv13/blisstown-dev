@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addContactLead } from '../utils/firebaseHelper';
+import { submitContactForm } from '../utils/firebaseHelper';
 import './ContactSection.css';
 
 const ContactSection = () => {
@@ -25,24 +25,25 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate lead submission animation
-    setTimeout(() => {
-      await addContactLead(formData);
-      setLoading(false);
+    try {
+      await submitContactForm(formData);
       setSubmitted(true);
-      
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
-
+      
       // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting contact form lead:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

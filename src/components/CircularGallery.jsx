@@ -410,12 +410,14 @@ class App {
       borderRadius = 0,
       font = 'bold 30px Figtree',
       scrollSpeed = 2,
-      scrollEase = 0.05
+      scrollEase = 0.05,
+      onClick
     } = {}
   ) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
+    this.onClickCallback = onClick;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck, 200);
     this.createRenderer();
@@ -459,6 +461,7 @@ class App {
       { image: `https://picsum.photos/seed/4/800/600?grayscale`, text: 'Strawberries' }
     ];
     const galleryItems = items && items.length ? items : defaultItems;
+    this.originalLength = galleryItems.length;
     this.mediasImages = galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
@@ -483,6 +486,11 @@ class App {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
     this.start = e.touches ? e.touches[0].clientX : e.clientX;
+    this.startTime = Date.now();
+    this.startPos = {
+      x: e.touches ? e.touches[0].clientX : e.clientX,
+      y: e.touches ? e.touches[0].clientY : e.clientY
+    };
   }
   onTouchMove(e) {
     if (!this.isDown) return;
@@ -490,9 +498,58 @@ class App {
     const distance = (this.start - x) * (this.scrollSpeed * 0.025);
     this.scroll.target = this.scroll.position + distance;
   }
-  onTouchUp() {
+  onTouchUp(e) {
     this.isDown = false;
     this.onCheck();
+    
+    if (this.startPos) {
+      let endX = this.startPos.x;
+      let endY = this.startPos.y;
+      
+      if (e) {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          endX = e.changedTouches[0].clientX;
+          endY = e.changedTouches[0].clientY;
+        } else if (e.clientX !== undefined) {
+          endX = e.clientX;
+          endY = e.clientY;
+        }
+      }
+      
+      const dx = endX - this.startPos.x;
+      const dy = endY - this.startPos.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const duration = Date.now() - this.startTime;
+      
+      // If movement is very small and duration is short, treat it as a click/tap
+      if (distance < 10 && duration < 300) {
+        this.onClick(this.startPos.x, this.startPos.y);
+      }
+    }
+  }
+  onClick(clientX, clientY) {
+    const rect = this.container.getBoundingClientRect();
+    const relativeX = clientX - rect.left;
+    const ndcX = (relativeX / rect.width) * 2 - 1;
+    const clickXIn3D = ndcX * (this.viewport.width / 2);
+    
+    let closestMedia = null;
+    let minDistance = Infinity;
+    
+    this.medias.forEach(media => {
+      const dist = Math.abs(media.plane.position.x - clickXIn3D);
+      const halfWidth = media.plane.scale.x / 2;
+      
+      if (dist < halfWidth && dist < minDistance) {
+        minDistance = dist;
+        closestMedia = media;
+      }
+    });
+    
+    if (closestMedia && this.onClickCallback) {
+      const originalIndex = closestMedia.index % this.originalLength;
+      this.onClickCallback(originalIndex);
+    }
   }
   onWheel(e) {
     e.preventDefault();
@@ -615,7 +672,8 @@ export default function CircularGallery({
   font = 'bold 30px Figtree',
   fontUrl,
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
+  onClick
 }) {
   const containerRef = useRef(null);
   useEffect(() => {
@@ -631,7 +689,8 @@ export default function CircularGallery({
         borderRadius,
         font: resolvedFont,
         scrollSpeed,
-        scrollEase
+        scrollEase,
+        onClick
       });
     });
 
@@ -639,7 +698,7 @@ export default function CircularGallery({
       isMounted = false;
       if (app) app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
+  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, onClick]);
   return (
     <div
       className="circular-gallery"

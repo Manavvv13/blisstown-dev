@@ -136,6 +136,7 @@
   height: 56px;
   background-color: var(--primary);
   color: var(--on-primary);
+  border-radius: 50%;
   flex-shrink: 0;
   transition: transform 0.4s ease;
 }
@@ -146,7 +147,7 @@
 
 .info-card__icon {
   font-size: 24px;
-  color: var(--secondary) !important; /* Ensure gold icon */
+  color: #ffffff !important;
 }
 
 .info-card__details {
@@ -167,9 +168,9 @@
 
 .info-card__value {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.6;
   color: var(--on-surface);
 }
