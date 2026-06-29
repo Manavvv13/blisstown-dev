@@ -24,7 +24,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    transform: scale(1.1);
+    transform: scale(1.25);
     transform-origin: center top;
 }
 
@@ -225,7 +225,7 @@
     }
     .hero__image,
     .hero__video {
-        transform: translateY(25px) scale(1.2) !important;
+        transform: translateY(25px) scale(1.35) !important;
         transform-origin: center center !important;
         object-position: 80% top !important;
     }
