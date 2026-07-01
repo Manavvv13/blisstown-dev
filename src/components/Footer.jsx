@@ -9,7 +9,7 @@ const Footer = () => {
         
         <div className="footer-brand">
           <div className="footer-logo">
-            <img src="/logo.png" alt="Blisstown Logo" className="footer-logo-img" />
+            <img src="/logo.png" alt="Blisstown Logo" className="footer-logo-img" width="110" height="44" />
           </div>
           <p className="footer-description">
             Pioneering the landscape of luxury development with an unwavering commitment to architectural integrity and timeless design.
@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-links-group">
-          <h4 className="footer-heading">Corporate</h4>
+          <h3 className="footer-heading">Corporate</h3>
           <ul className="footer-list">
             <li><Link to="/about-us" className="footer-link">About Us</Link></li>
             <li><Link to="/chairman-message" className="footer-link">Chairman Message</Link></li>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-links-group">
-          <h4 className="footer-heading">Policies</h4>
+          <h3 className="footer-heading">Policies</h3>
           <ul className="footer-list">
             <li><Link to="/quality-policy" className="footer-link">Quality Policy</Link></li>
             <li><Link to="/safety-policy" className="footer-link">Safety Policy</Link></li>
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-links-group">
-          <h4 className="footer-heading">Navigation</h4>
+          <h3 className="footer-heading">Navigation</h3>
           <ul className="footer-list">
             <li><Link to="/" className="footer-link">Home</Link></li>
             <li><Link to="/project" className="footer-link">JMDR Arihant Green</Link></li>
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-connect">
-          <h4 className="footer-heading">Connect</h4>
+          <h3 className="footer-heading">Connect</h3>
           <div className="footer-socials">
             <a href="#" className="footer-social-link"><span className="material-symbols-outlined">public</span></a>
             <a href="#" className="footer-social-link"><span className="material-symbols-outlined">camera</span></a>
@@ -53,12 +53,17 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <div className="footer-copyright">
-            © 2026 All rights reserved<Link to="/admin" className="hidden-admin-link">.</Link>
-          </div>
-          <div className="footer-legal">
-            <a href="#" className="footer-link-bottom">Legal</a>
-            <a href="#" className="footer-link-bottom">Privacy Policy</a>
+          <p className="footer-disclaimer">
+            Disclaimer: All images, architectural renders, digital representations, and artistic impressions are subject to copyright. The actual design, final layout, and specifications of the properties may vary from the visual representations shown on this website.
+          </p>
+          <div className="footer-bottom-info">
+            <div className="footer-copyright">
+              © 2026 Blisstown Developers Pvt. Ltd. All rights reserved<Link to="/admin" className="hidden-admin-link">.</Link>
+            </div>
+            <div className="footer-legal">
+              <a href="#" className="footer-link-bottom">Legal</a>
+              <a href="#" className="footer-link-bottom">Privacy Policy</a>
+            </div>
           </div>
         </div>
 

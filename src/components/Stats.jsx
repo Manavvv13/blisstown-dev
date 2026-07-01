@@ -69,7 +69,7 @@ const Stats = () => {
             <div className="stats__container">
                 <div className={`stats__item ${isVisible ? 'stats__item--visible' : ''}`} style={{ transitionDelay: '0s' }}>
                     <div className="stats__number">
-                        <CountUp end={25} isVisible={isVisible} />+
+                        <CountUp end={20} isVisible={isVisible} />+
                     </div>
                     <div className="stats__label">Years of Trust</div>
                 </div>
@@ -81,9 +81,9 @@ const Stats = () => {
                 </div>
                 <div className={`stats__item ${isVisible ? 'stats__item--visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
                     <div className="stats__number">
-                        <CountUp end={1200} isVisible={isVisible} />+
+                        <CountUp end={5000} isVisible={isVisible} />+
                     </div>
-                    <div className="stats__label">Acres Developed</div>
+                    <div className="stats__label">Homes Delivered</div>
                 </div>
             </div>
         </section>
