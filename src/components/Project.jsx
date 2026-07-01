@@ -50,7 +50,7 @@ const Project = () => {
               <img 
                 alt="JMDR Arihant Green - Signature Residences" 
                 className="project-card-image" 
-                src="/images/Project Image.png" 
+                src="/images/Project Image.avif" 
               />
               <div className="project-card-arrow-badge">
                 <span className="material-symbols-outlined">arrow_outward</span>

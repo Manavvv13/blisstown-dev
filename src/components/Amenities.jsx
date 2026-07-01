@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Amenities.css';
 
 const amenitiesData = [
-  { icon: 'pool', text: 'Swimming Pool', desc: 'Submerge in our temp-controlled infinity pool overlooking the skyline.', image: '/images/swimming_pool_new.jpg' },
+  { icon: 'pool', text: 'Swimming Pool', desc: 'Submerge in our temp-controlled infinity pool overlooking the skyline.', image: '/images/swimming_pool_new.avif' },
   { icon: 'house', text: 'Clubhouse', desc: 'Bespoke 24/7 butler and concierge services to assist your daily life.', image: '/images/clubhouse_new.png' },
   { icon: 'toys', text: 'Kids Play Area', desc: 'An open sky retreat tailored for intimate gatherings and stargazing.', image: '/images/kids_play_area_new.png' },
   { icon: 'fitness_center', text: 'Gym', desc: 'A state-of-the-art gym, luxury spa, and restorative yoga deck.', image: '/images/luxury_gym_new.png' },

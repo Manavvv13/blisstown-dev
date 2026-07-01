@@ -19,12 +19,12 @@ const gallerySlides = [
         desc: "Bespoke health clubs, state-of-the-art spas, and private lounges."
     },
     {
-        image: "/images/swimming_pool_new.jpg",
+        image: "/images/swimming_pool_new.avif",
         title: "Swimming Pool",
         desc: "Submerge in our temp-controlled infinity pool overlooking the skyline."
     },
     {
-        image: "/images/Garden View.png",
+        image: "/images/Garden view.avif",
         title: "Garden View",
         desc: "Lush botanical gardens offering a serene landscape retreat."
     }

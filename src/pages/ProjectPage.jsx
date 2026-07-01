@@ -112,10 +112,10 @@ const ProjectPage = () => {
                   <div className="pane-grid">
                     <div className="pane-image-wrapper">
                       <img 
-                        src="/images/Project Image.png" 
+                        src="/images/Project Image.avif" 
                         alt="JMDR Arihant Green Tower A" 
                         className="pane-image"
-                        onClick={() => openLightbox('/images/Project Image.png')}
+                        onClick={() => openLightbox('/images/Project Image.avif')}
                       />
                       <div className="image-overlay-hint">
                         <span className="material-symbols-outlined">zoom_in</span>

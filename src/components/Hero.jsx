@@ -15,7 +15,7 @@ const Hero = () => {
                 <img 
                     alt="Luxury Property Facade" 
                     className="hero__image" 
-                    src="/images/hero bg new.png"
+                    src="/images/hero bg new.avif"
                 />
                 <video 
                     className={`hero__video ${videoEnded ? 'hero__video--ended' : ''}`}
