@@ -160,10 +160,10 @@ const ProjectPage = () => {
                   <div className="pane-single-layout">
                     <div className="pane-image-wrapper site-plan-wrapper">
                       <img 
-                        src="/images/Master Plan Image.jpg" 
+                        src="/images/Layout- JMDR Arihant Green.avif" 
                         alt="Master Plan" 
                         className="pane-image site-plan-image"
-                        onClick={() => openLightbox('/images/Master Plan Image.jpg')}
+                        onClick={() => openLightbox('/images/Layout- JMDR Arihant Green.avif')}
                       />
                       <div className="image-overlay-hint">
                         <span className="material-symbols-outlined">zoom_in</span>
