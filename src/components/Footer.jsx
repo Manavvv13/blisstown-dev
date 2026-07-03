@@ -20,8 +20,8 @@ const Footer = () => {
           <h3 className="footer-heading">Corporate</h3>
           <ul className="footer-list">
             <li><Link to="/about-us" className="footer-link">About Us</Link></li>
-            <li><Link to="/chairman-message" className="footer-link">Chairman Message</Link></li>
-            <li><Link to="/management-team" className="footer-link">Management Team</Link></li>
+            {/* <li><Link to="/chairman-message" className="footer-link">Chairman Message</Link></li> */}
+            {/* <li><Link to="/management-team" className="footer-link">Management Team</Link></li> */}
           </ul>
         </div>
 

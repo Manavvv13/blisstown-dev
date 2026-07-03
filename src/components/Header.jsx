@@ -114,12 +114,14 @@ const Header = () => {
                                     <Link className="header__dropdown-item" to="/about-us">
                                         About Us
                                     </Link>
+                                    {/* 
                                     <Link className="header__dropdown-item" to="/chairman-message">
                                         Chairman Message
                                     </Link>
                                     <Link className="header__dropdown-item" to="/management-team">
                                         Management Team
                                     </Link>
+                                    */}
                                     <Link className="header__dropdown-item" to="/quality-policy">
                                         Quality Policy
                                     </Link>
