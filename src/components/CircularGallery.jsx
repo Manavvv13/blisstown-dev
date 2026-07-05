@@ -302,6 +302,7 @@ class Media {
     this.plane.setParent(this.scene);
   }
   createTitle() {
+    if (!this.text) return;
     this.title = new Title({
       gl: this.gl,
       plane: this.plane,
@@ -363,7 +364,9 @@ class Media {
     }
     
     // Scale bend dynamically based on screen width to prevent extreme rotation on smaller screens
-    if (this.screen.width < 480) {
+    if (this.bend === 0) {
+      this.effectiveBend = 0;
+    } else if (this.screen.width < 480) {
       this.effectiveBend = 1.2; // Beautiful curved look matching laptop version on mobile
     } else if (this.screen.width < 1024) {
       this.effectiveBend = 1.6; // Medium curve on tablet

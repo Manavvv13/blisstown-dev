@@ -4,27 +4,27 @@ import './Gallery.css';
 
 const gallerySlides = [
     {
-        image: "/images/img 1.jpeg",
+        image: "/images/gallery 1.avif",
         title: "Master Bedroom",
         desc: "Unrivaled views of the skyline through expansive glass walls."
     },
     {
-        image: "/images/img 2.jpeg",
+        image: "/images/gallery 2.avif",
         title: "Living Room",
         desc: "Private infinity pools designed for ultimate restoration."
     },
     {
-        image: "/images/img 3.jpeg",
+        image: "/images/gallery 3.avif",
         title: "Modular Kitchen",
         desc: "Bespoke health clubs, state-of-the-art spas, and private lounges."
     },
     {
-        image: "/images/swimming_pool_new.avif",
+        image: "/images/gallery 4.avif",
         title: "Swimming Pool",
         desc: "Submerge in our temp-controlled infinity pool overlooking the skyline."
     },
     {
-        image: "/images/Garden view.avif",
+        image: "/images/gallery 5.avif",
         title: "Garden View",
         desc: "Lush botanical gardens offering a serene landscape retreat."
     }
@@ -47,7 +47,7 @@ const Gallery = () => {
     // Map slides to CircularGallery expected items format: { image, text }
     const items = React.useMemo(() => gallerySlides.map(slide => ({
         image: slide.image,
-        text: slide.title
+        text: ""
     })), []);
 
     const handleCardClick = React.useCallback((index) => {
@@ -66,7 +66,7 @@ const Gallery = () => {
             <div className="circular-gallery-wrapper">
                 <CircularGallery
                     items={items}
-                    bend={3}
+                    bend={0}
                     textColor="#ffffff"
                     borderRadius={0.05}
                     scrollEase={0.05}
@@ -88,9 +88,6 @@ const Gallery = () => {
                         </button>
                         <div className="gallery-lightbox-image-container">
                             <img src={activeSlide.image} alt={activeSlide.title} />
-                        </div>
-                        <div className="gallery-lightbox-info">
-                            <h3 className="gallery-lightbox-title">{activeSlide.title}</h3>
                         </div>
                     </div>
                 </div>
