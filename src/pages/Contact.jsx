@@ -92,7 +92,7 @@ const Contact = () => {
         <div className="contact-header reveal-up">
           <span className="font-subheading-lg contact-subtitle">Get In Touch</span>
           <h2 className="font-headline-lg contact-title">
-            If You Have Any Query, <em>Please Feel Free</em> Contact Us
+            If You Have Any Query, <em>Feel Free</em> to Contact Us
           </h2>
         </div>
 
