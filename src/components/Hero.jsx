@@ -19,7 +19,7 @@ const Hero = () => {
                 />
                 <video 
                     className={`hero__video ${videoEnded ? 'hero__video--ended' : ''}`}
-                    src="/images/blisstown video.mp4"
+                    src="https://res.cloudinary.com/iquegkbw/video/upload/v1783577611/blisstown_video_tfsydq.mp4"
                     autoPlay
                     muted
                     playsInline
