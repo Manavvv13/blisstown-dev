@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-// Pages
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import ChairmanMessage from './pages/ChairmanMessage';
-import ManagementTeam from './pages/ManagementTeam';
-import QualityPolicy from './pages/QualityPolicy';
-import SafetyPolicy from './pages/SafetyPolicy';
-import ProjectPage from './pages/ProjectPage';
-import CompletedProjects from './pages/CompletedProjects';
-import Contact from './pages/Contact';
-import BlogPage from './pages/BlogPage';
-import BlogDetailPage from './pages/BlogDetailPage';
-import AdminDashboard from './pages/AdminDashboard';
+// Pages - Code-split using React.lazy
+const Home = lazy(() => import('./pages/Home'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const ChairmanMessage = lazy(() => import('./pages/ChairmanMessage'));
+const ManagementTeam = lazy(() => import('./pages/ManagementTeam'));
+const QualityPolicy = lazy(() => import('./pages/QualityPolicy'));
+const SafetyPolicy = lazy(() => import('./pages/SafetyPolicy'));
+const ProjectPage = lazy(() => import('./pages/ProjectPage'));
+const CompletedProjects = lazy(() => import('./pages/CompletedProjects'));
+const Contact = lazy(() => import('./pages/Contact'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 
 // Scroll to top on navigation helper
 const ScrollToTop = () => {
@@ -28,13 +28,42 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Elegant centered loading fallback spinner matching golden theme
+const PageLoader = () => (
+  <div className="page-loader" style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '60vh',
+    width: '100%',
+    background: 'transparent'
+  }}>
+    <div className="spinner" style={{
+      width: '40px',
+      height: '40px',
+      border: '3px solid rgba(212, 175, 55, 0.1)',
+      borderTop: '3px solid var(--primary)',
+      borderRadius: '50%',
+      animation: 'spin 1s linear infinite'
+    }}></div>
+    <style>{`
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `}</style>
+  </div>
+);
+
 // Layout for public pages to ensure header/footer are present
 const PublicLayout = () => {
   return (
     <>
       <Header />
       <main>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </>
@@ -92,7 +121,11 @@ function App() {
           </Route>
           
           {/* Admin Dashboard - Standalone */}
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={
+            <Suspense fallback={<PageLoader />}>
+              <AdminDashboard />
+            </Suspense>
+          } />
         </Routes>
       </div>
     </Router>
