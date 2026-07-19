@@ -42,27 +42,34 @@ const Amenities = () => {
           <div className="amenities-divider"></div>
         </div>
 
-        {/* Service Rows */}
-        <div className="amenities-services">
+        {/* 4-Card Grid */}
+        <div className="amenities-grid">
           {amenitiesData.map((item, index) => (
-            <div className="amenity-row reveal-up" key={index}>
-              <div className="amenity-row-text">
-                <h3 className="amenity-row-title">{item.text}</h3>
-                <p className="amenity-row-desc">{item.desc}</p>
-                <Link to="/project" className="amenity-explore-btn">
-                  <span className="amenity-explore-label">Explore More</span>
-                  <span className="amenity-explore-arrow">
-                    <span className="material-symbols-outlined">arrow_outward</span>
-                  </span>
-                </Link>
-              </div>
-              <div className="amenity-row-image-wrapper">
+            <div className="amenity-card reveal-up" key={index} style={{ transitionDelay: `${index * 0.1}s` }}>
+              <div className="amenity-card-image-wrapper">
                 <img
                   src={item.image}
                   alt={item.text}
-                  className="amenity-row-image"
+                  className="amenity-card-image"
                   loading="lazy"
                 />
+                <div className="amenity-card-overlay"></div>
+              </div>
+
+              <div className="amenity-card-content">
+                <div className="amenity-card-header">
+                  <div className="amenity-card-icon-wrapper">
+                    <span className="material-symbols-outlined amenity-card-icon">{item.icon}</span>
+                  </div>
+                  <h3 className="amenity-card-title">{item.text}</h3>
+                </div>
+                
+                <p className="amenity-card-desc">{item.desc}</p>
+                
+                <Link to="/project" className="amenity-card-btn">
+                  <span>Explore Details</span>
+                  <span className="material-symbols-outlined btn-arrow">arrow_outward</span>
+                </Link>
               </div>
             </div>
           ))}

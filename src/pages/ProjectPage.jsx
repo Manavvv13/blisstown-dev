@@ -53,11 +53,9 @@ const ProjectPage = () => {
       <section className="project-detail-section section">
         <div className="container">
           <div className="project-intro-block text-center reveal-up">
-            <span className="font-subheading-lg">Our Projects</span>
-            <h2 className="font-headline-lg project-subtitle">Our Ongoing Residential Projects</h2>
-            <h3 className="font-headline-md project-group-company">
+            <h2 className="font-headline-md project-group-company" style={{ margin: 0 }}>
               JMDR Arihant Green <em>- by Bliss Town Developers (Our Group Company)</em>
-            </h3>
+            </h2>
           </div>
 
           <div className="project-desc-grid reveal-up">

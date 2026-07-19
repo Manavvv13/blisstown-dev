@@ -26,19 +26,7 @@ const AboutUs = () => {
 
     return (
         <div className="about-page">
-            {/* Page Header / Hero Banner */}
-            <header className="about-hero reveal-up">
-                <div className="about-hero__overlay"></div>
-                <div className="container about-hero__content">
-                    <span className="font-subheading-lg about-hero__tag">Heritage of Trust</span>
-                    <h1 className="font-display-xl about-hero__title">Our Story</h1>
-                    <div className="breadcrumbs">
-                        <Link to="/" className="breadcrumb-item" style={{ textDecoration: 'none' }}>Home</Link>
-                        <span className="breadcrumb-separator">/</span>
-                        <span className="breadcrumb-item breadcrumb-item--active">About Us</span>
-                    </div>
-                </div>
-            </header>
+
 
             {/* Who We Are & Visual Stack */}
             <section className="about-intro-section container section">

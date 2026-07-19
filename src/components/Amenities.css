@@ -1,6 +1,6 @@
 /* Amenities.css */
 .amenities-section {
-    padding: var(--section-gap) var(--margin-desktop);
+    padding: var(--section-gap) 0;
     background-color: var(--background);
     position: relative;
     overflow: hidden;
@@ -35,134 +35,246 @@
     margin: 0 auto;
 }
 
-/* ─── Service Rows ─── */
-.amenities-services {
+/* ─── Grid of 4 Cards ─── */
+.amenities-grid {
     width: 100%;
-    max-width: 860px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 10px 0;
+}
+
+@media (max-width: 1100px) {
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 10px 0;
+    }
+    
+    .amenity-card {
+        height: 280px;
+        border-radius: 16px;
+    }
+    
+    .amenity-card-content {
+        padding: 24px 20px;
+    }
+    
+    .amenity-card-header {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .amenity-card-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+    
+    .amenity-card-icon {
+        font-size: 18px;
+    }
+    
+    .amenity-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    
+    .amenity-card-desc {
+        display: block;
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+        min-height: auto;
+    }
+    
+    .amenity-card-btn {
+        font-size: 12px;
+        gap: 4px;
+        padding-bottom: 0px;
+    }
+}
+
+/* ─── Premium Amenity Card ─── */
+.amenity-card {
+    position: relative;
+    border-radius: 24px;
+    background-color: var(--surface-dim);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    height: 460px; /* Perfect tall card height */
     display: flex;
     flex-direction: column;
-    gap: 28px; /* Clean gap between separated boxes */
+    justify-content: flex-end;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.amenity-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-    padding: 32px 40px;
-    background: rgba(255, 255, 255, 0.03); /* Whitish translucent background */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06); /* Whitish translucent border */
-    border-radius: 24px; /* Rounded box */
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+.amenity-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(241, 210, 140, 0.15);
 }
 
-.amenity-row:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--secondary); /* subtle gold outline on hover */
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 15px rgba(229, 193, 118, 0.1);
-}
-
-.amenity-row-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.amenity-row-title {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--on-surface);
-    margin: 0;
-    transition: color 0.3s ease;
-}
-
-.amenity-row:hover .amenity-row-title {
-    color: var(--secondary);
-}
-
-.amenity-row-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--on-surface-variant);
-    margin: 0;
-    max-width: 420px;
-}
-
-/* Explore More Button */
-.amenity-explore-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    margin-top: 8px;
-    cursor: pointer;
-    transition: gap 0.3s ease;
-}
-
-.amenity-explore-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--on-surface);
-    padding: 10px 24px;
-    border: 1px solid var(--outline-variant);
-    border-radius: 999px;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.amenity-explore-btn:hover .amenity-explore-label {
-    background-color: var(--on-surface);
-    color: var(--background);
-    border-color: var(--on-surface);
-}
-
-.amenity-explore-arrow {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--on-surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.amenity-explore-arrow .material-symbols-outlined {
-    font-size: 18px;
-    color: var(--background);
-}
-
-.amenity-explore-btn:hover .amenity-explore-arrow {
-    transform: scale(1.08);
-}
-
-/* ─── Image ─── */
-.amenity-row-image-wrapper {
-    flex-shrink: 0;
-    width: 280px;
-    height: 200px;
-    border-radius: 16px;
+/* ─── Background Image & Overlay ─── */
+.amenity-card-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
     overflow: hidden;
 }
 
-.amenity-row-image {
+.amenity-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.amenity-row:hover .amenity-row-image {
-    transform: scale(1.06);
+.amenity-card:hover .amenity-card-image {
+    transform: scale(1.1);
 }
 
-/* ─── Mobile Responsive ─── */
+.amenity-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(9, 10, 15, 0.15) 0%,
+        rgba(9, 10, 15, 0.5) 45%,
+        rgba(9, 10, 15, 0.95) 100%
+    );
+    z-index: 2;
+    transition: background 0.4s ease;
+}
+
+.amenity-card:hover .amenity-card-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(9, 10, 15, 0.25) 0%,
+        rgba(9, 10, 15, 0.65) 40%,
+        rgba(9, 10, 15, 0.98) 100%
+    );
+}
+
+/* ─── Card Content Layer ─── */
+.amenity-card-content {
+    position: relative;
+    z-index: 3;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.amenity-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.amenity-card-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(241, 210, 140, 0.1);
+    border: 1px solid rgba(241, 210, 140, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    flex-shrink: 0;
+}
+
+.amenity-card:hover .amenity-card-icon-wrapper {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    transform: scale(1.05);
+}
+
+.amenity-card-icon {
+    color: var(--secondary);
+    font-size: 20px;
+    transition: color 0.4s ease;
+}
+
+.amenity-card:hover .amenity-card-icon {
+    color: var(--background);
+}
+
+.amenity-card-title {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.amenity-card:hover .amenity-card-title {
+    color: var(--secondary);
+}
+
+.amenity-card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--on-surface-variant);
+    margin: 0 0 24px 0;
+    opacity: 0.9;
+    min-height: 64px; /* Ensure even heights */
+}
+
+/* ─── Details Link ─── */
+.amenity-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--secondary);
+    width: fit-content;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+.amenity-card-btn:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.btn-arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.amenity-card-btn:hover .btn-arrow {
+    transform: translate(2px, -2px);
+}
+
+/* ─── Mobile Responsive Header Sizing ─── */
 @media (max-width: 768px) {
     .amenities-section {
         padding: calc(var(--section-gap) * 0.5) var(--margin-mobile);
@@ -174,21 +286,5 @@
 
     .amenities-title {
         font-size: 32px;
-    }
-
-    .amenity-row {
-        flex-direction: column;
-        gap: 24px;
-        padding: 28px 20px;
-    }
-
-    .amenity-row-image-wrapper {
-        width: 100%;
-        height: 200px;
-        border-radius: 12px;
-    }
-
-    .amenity-row-desc {
-        max-width: 100%;
     }
 }

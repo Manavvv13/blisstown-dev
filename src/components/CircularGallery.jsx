@@ -239,7 +239,6 @@ class Media {
         void main() {
           vUv = uv;
           vec3 p = position;
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -396,7 +395,7 @@ class Media {
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
     
     // Padding proportional to card width for perfect spacing on all devices
-    this.padding = this.plane.scale.x * 0.45; // slightly wider gap to prevent overlaps on small screens
+    this.padding = this.plane.scale.x * 0.22; // closer gap for a tighter layout
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;
@@ -679,6 +678,8 @@ export default function CircularGallery({
   onClick
 }) {
   const containerRef = useRef(null);
+  const appRef = useRef(null);
+
   useEffect(() => {
     if (!containerRef.current) return;
     let app;
@@ -695,20 +696,55 @@ export default function CircularGallery({
         scrollEase,
         onClick
       });
+      appRef.current = app;
     });
 
     return () => {
       isMounted = false;
       if (app) app.destroy();
+      appRef.current = null;
     };
   }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, onClick]);
+
+  const handlePrev = () => {
+    if (appRef.current) {
+      appRef.current.scroll.target -= appRef.current.scrollSpeed * 5;
+      appRef.current.onCheckDebounce();
+    }
+  };
+
+  const handleNext = () => {
+    if (appRef.current) {
+      appRef.current.scroll.target += appRef.current.scrollSpeed * 5;
+      appRef.current.onCheckDebounce();
+    }
+  };
+
   return (
-    <div
-      className="circular-gallery"
-      ref={containerRef}
-      tabIndex={0}
-      role="region"
-      aria-label="Circular image gallery. Use left and right arrow keys to navigate."
-    />
+    <div className="circular-gallery-wrapper-inner">
+      <button 
+        className="gallery-arrow-btn gallery-arrow-btn--left" 
+        onClick={handlePrev}
+        aria-label="Previous Slide"
+      >
+        <span className="material-symbols-outlined">arrow_back</span>
+      </button>
+
+      <div
+        className="circular-gallery"
+        ref={containerRef}
+        tabIndex={0}
+        role="region"
+        aria-label="Circular image gallery."
+      />
+
+      <button 
+        className="gallery-arrow-btn gallery-arrow-btn--right" 
+        onClick={handleNext}
+        aria-label="Next Slide"
+      >
+        <span className="material-symbols-outlined">arrow_forward</span>
+      </button>
+    </div>
   );
 }

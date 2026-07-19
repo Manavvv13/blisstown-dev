@@ -64,7 +64,7 @@ const Header = () => {
     return (
         <>
             {/* Floating Logo - Top Left */}
-            <div className={`floating-logo ${mobileMenuOpen ? 'floating-logo--menu-open' : ''}`}>
+            <div className={`floating-logo ${mobileMenuOpen ? 'floating-logo--menu-open' : ''} ${scrolled ? 'floating-logo--scrolled' : ''}`}>
                 <Link to="/" onClick={handleHomeClick} style={{ display: 'flex', alignItems: 'center' }}>
                     <img src="/logo.png" alt="Blisstown Logo" className="floating-logo-img" width="170" height="68" />
                 </Link>

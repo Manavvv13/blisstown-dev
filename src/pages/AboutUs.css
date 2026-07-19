@@ -4,6 +4,13 @@
     color: var(--on-surface);
     min-height: 100vh;
     overflow-x: hidden;
+    padding-top: 140px; /* Offset to clear the large floating header logo & fixed navbar capsule */
+}
+
+@media (max-width: 992px) {
+    .about-page {
+        padding-top: 100px; /* Smaller offset on mobile viewports */
+    }
 }
 
 /* Page Header / Hero Banner */
@@ -79,7 +86,7 @@
 
 /* Section 1: Who We Are & Image Stack */
 .about-intro-section {
-    padding-top: var(--section-gap);
+    padding-top: 0; /* Align directly to top padding to move text & image stack upwards */
     padding-bottom: var(--section-gap);
 }
 

@@ -27,70 +27,38 @@ const QualityPolicy = () => {
   return (
     <div className="policy-page">
       {/* Page Header */}
-      <header className="page-header reveal-up">
+      <section className="policy-header">
         <div className="container">
-          <span className="font-subheading-lg page-header__tag">Commitment</span>
-          <h1 className="font-display-xl page-header__title">Quality Policy</h1>
-          <div className="breadcrumbs">
+          <h1 className="font-display-xl policy-page-title reveal-up">Quality Policy</h1>
+          <nav className="policy-breadcrumb reveal-up">
             <Link to="/" className="breadcrumb-item" style={{ textDecoration: 'none' }}>Home</Link>
             <span className="breadcrumb-separator">/</span>
             <Link to="/about-us" className="breadcrumb-item" style={{ textDecoration: 'none' }}>About Us</Link>
             <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-item breadcrumb-item--active">Quality Policy</span>
-          </div>
+            <span className="breadcrumb-item active">Quality Policy</span>
+          </nav>
         </div>
-      </header>
+      </section>
 
       {/* Main Content Section */}
       <section className="policy-content-section section">
         <div className="container">
-          <div className="policy-grid">
-            <div className="policy-info-block reveal-up">
-              <span className="font-subheading-lg">Quality Policy</span>
-              <h2 className="font-headline-lg policy-subtitle">Quality is our commitment</h2>
-              
-              <div className="policy-card glass-panel">
-                <p className="font-body-lg policy-intro">
-                  It is the policy of Blisstown to accomplish Real Estate developments of various types through the employment of
-                  experienced Contractors and Specialist Subcontractors to achieve quality excellence consistent with all Client’s
-                  requirements, applicable codes and standards.
-                </p>
-                <p className="font-body-md policy-paragraph">
-                  The Contractors and or Specialist Subcontractors will be employed on the clear understanding that they must follow the
-                  requirements of our Quality Management System.
-                </p>
-              </div>
-
-              <div className="policy-list">
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">eco</span>
-                  <p className="font-body-md">Ensure compliance to all applicable laws and legal requirements related to Environmental aspects; and implement Environment Management Program to prevent pollution and waste of resources.</p>
-                </div>
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">gavel</span>
-                  <p className="font-body-md">Ensure compliance to all applicable building bye-laws and deliver safe buildings.</p>
-                </div>
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">assignment_turned_in</span>
-                  <p className="font-body-md">Ensure compliance to all applicable legal and statutory requirements related to project development and construction.</p>
-                </div>
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">shield</span>
-                  <p className="font-body-md">Ensure compliance to all safety laws and requirements; and provide for safety of workers, personnel, material and machinery.</p>
-                </div>
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">groups</span>
-                  <p className="font-body-md">Ensure high level of competency and team work in the organization by providing effective leadership, communication and training.</p>
-                </div>
-                <div className="policy-list-item glass-panel">
-                  <span className="material-symbols-outlined policy-icon">trending_up</span>
-                  <p className="font-body-md">The management is committed to the continual improvement of the Quality Management System.</p>
-                </div>
-              </div>
+          
+          {/* Top Block: Statement & Experience Card */}
+          <div className="policy-top-grid">
+            <div className="policy-statement-wrapper reveal-up">
+              <p className="font-body-lg policy-intro">
+                It is the policy of Blisstown to accomplish Real Estate developments of various types through the employment of
+                experienced Contractors and Specialist Subcontractors to achieve quality excellence consistent with all Client’s
+                requirements, applicable codes and standards.
+              </p>
+              <p className="font-body-md policy-paragraph">
+                The Contractors and or Specialist Subcontractors will be employed on the clear understanding that they must follow the
+                requirements of our Quality Management System.
+              </p>
             </div>
 
-            {/* Experience Card */}
-            <div className="policy-experience-container reveal-up">
+            <div className="policy-experience-container reveal-up" style={{ transitionDelay: '0.1s' }}>
               <div className="experience-card glass-panel-heavy">
                 <div className="experience-number-wrapper">
                   <span className="experience-number">25</span>
@@ -103,6 +71,60 @@ const QualityPolicy = () => {
               </div>
             </div>
           </div>
+
+          {/* Bottom Block: Points Grid */}
+          <div className="policy-objectives-section">
+            <div className="policy-objectives-header reveal-up">
+              <span className="font-subheading-lg text-gold">Commitments</span>
+              <h2 className="policy-objectives-title">Key Quality Objectives</h2>
+              <div className="policy-objectives-line"></div>
+            </div>
+
+            <div className="policy-objectives-grid reveal-up">
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">eco</span>
+                </div>
+                <p className="font-body-md point-text">Ensure compliance to all applicable laws and legal requirements related to Environmental aspects; and implement Environment Management Program to prevent pollution and waste of resources.</p>
+              </div>
+
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">gavel</span>
+                </div>
+                <p className="font-body-md point-text">Ensure compliance to all applicable building bye-laws and deliver safe buildings.</p>
+              </div>
+
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">assignment_turned_in</span>
+                </div>
+                <p className="font-body-md point-text">Ensure compliance to all applicable legal and statutory requirements related to project development and construction.</p>
+              </div>
+
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">shield</span>
+                </div>
+                <p className="font-body-md point-text">Ensure compliance to all safety laws and requirements; and provide for safety of workers, personnel, material and machinery.</p>
+              </div>
+
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">groups</span>
+                </div>
+                <p className="font-body-md point-text">Ensure high level of competency and team work in the organization by providing effective leadership, communication and training.</p>
+              </div>
+
+              <div className="policy-point-card glass-panel">
+                <div className="point-icon-wrapper">
+                  <span className="material-symbols-outlined policy-icon">trending_up</span>
+                </div>
+                <p className="font-body-md point-text">The management is committed to the continual improvement of the Quality Management System.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </div>

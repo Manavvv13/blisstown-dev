@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import ScrollReveal from './ScrollReveal';
 import './Introduction.css';
 
 const Introduction = () => {
@@ -31,7 +30,7 @@ const Introduction = () => {
                 
                 {/* Left Column: Heading and Rounded Image */}
                 <div className="intro-left reveal-left">
-                    <span className="font-subheading-lg intro-tag">About Us</span>
+                    <h2 className="intro-tag">About Us</h2>
                     <div className="intro-image-wrapper">
                         <img 
                             src="/images/About us blisstown.avif" 
@@ -41,22 +40,16 @@ const Introduction = () => {
                     </div>
                 </div>
 
-                {/* Right Column: High-Contrast Highlighted Typography */}
-                <div className="intro-right reveal-right" style={{ transitionDelay: '0.2s' }}>
-                    <ScrollReveal
-                        baseOpacity={0.1}
-                        enableBlur={true}
-                        baseRotation={3}
-                        blurStrength={3}
-                        containerClassName="intro-scroll-reveal"
-                        textClassName="intro-highlight-title"
-                        wordAnimationEnd="top 30%"
-                        rotationEnd="top 40%"
-                    >
+                {/* Right Column: High-Contrast Typography */}
+                <div className="intro-right">
+                    <p className="intro-highlight-title reveal-up" style={{ transitionDelay: '0.1s' }}>
                         We're a team of developers and architects dedicated to building smarter, more sustainable homes tailored to the way you live today, and ready for the demands of tomorrow.
-                    </ScrollReveal>
+                    </p>
+                    <p className="intro-paragraph reveal-up" style={{ transitionDelay: '0.25s' }}>
+                        Bliss Town Developers Pvt. Ltd., backed by the renowned Maxblis Group, brings decades of construction excellence to Greater Noida. With a vision to redefine real estate standards, we combine modern architectural concepts, robust engineering practices, and transparent customer relations to deliver landmark addresses.
+                    </p>
 
-                    <div className="intro-actions">
+                    <div className="intro-actions reveal-up" style={{ transitionDelay: '0.4s' }}>
                         <Link to="/about-us" className="btn-black-pill">
                             Get Started
                             <div className="arrow-circle">

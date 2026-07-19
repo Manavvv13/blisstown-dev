@@ -1,29 +1,17 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
-    const [videoEnded, setVideoEnded] = useState(false);
-
-    const handleVideoEnded = () => {
-        setVideoEnded(true);
-    };
-
     return (
         <section className="hero">
             <div className="hero__background">
-                <img 
-                    alt="Luxury Property Facade" 
-                    className="hero__image" 
-                    src="/images/hero bg new.avif"
-                />
                 <video 
-                    className={`hero__video ${videoEnded ? 'hero__video--ended' : ''}`}
-                    src="https://res.cloudinary.com/iquegkbw/video/upload/v1783577611/blisstown_video_tfsydq.mp4"
+                    className="hero__video"
+                    src="https://res.cloudinary.com/iquegkbw/video/upload/v1784442321/blisstown_banner_uqxw8i.mp4"
                     autoPlay
                     muted
+                    loop
                     playsInline
-                    onEnded={handleVideoEnded}
                 />
                 <div className="hero__overlay"></div>
             </div>

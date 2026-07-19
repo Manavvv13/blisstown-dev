@@ -115,12 +115,8 @@ const CompletedProjects = () => {
       {/* Main Content */}
       <section className="completed-projects-content section">
         <div className="container">
-          <div className="completed-projects-intro reveal-up">
-            <span className="font-subheading-lg text-gold">Performance</span>
-            <h2 className="font-headline-lg completed-projects-subtitle">
-              Our Track Record Speaks For Itself
-            </h2>
-            <p className="completed-projects-desc">
+          <div className="completed-projects-intro reveal-up" style={{ marginBottom: '35px' }}>
+            <p className="completed-projects-desc" style={{ fontSize: '18px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
               With a 100% on-time delivery record and zero litigation history, our completed
               projects stand as a testament to our commitment to quality and trust.
             </p>

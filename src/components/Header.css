@@ -3,33 +3,42 @@
 /* Floating Logo - Top Left Corner */
 .floating-logo {
     position: fixed;
-    top: 24px;
+    top: 10px;
     left: 40px;
     z-index: 100;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.floating-logo--scrolled {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
 }
 
 .floating-logo-img {
-    height: 68px; /* Bigger logo */
+    height: 125px; /* Bigger logo */
     width: auto;
     object-fit: contain;
-    /* Soft white neon drop-shadow for premium contrast on dark elements */
-    filter: brightness(0) invert(1) drop-shadow(0 2px 10px rgba(255, 255, 255, 0.18));
+    /* Soft drop-shadow for premium contrast on dark elements */
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .floating-logo:hover .floating-logo-img {
     transform: scale(1.05);
-    filter: brightness(0) invert(1) drop-shadow(0 4px 15px var(--secondary));
+    filter: drop-shadow(0 4px 12px var(--secondary));
 }
 
 @media (max-width: 992px) {
     .floating-logo {
         left: 24px;
-        top: 20px;
+        top: 10px;
     }
     .floating-logo-img {
-        height: 48px;
+        height: 80px;
     }
 }
 
@@ -475,6 +484,9 @@
         top: 24px !important; /* Re-align with close button */
         left: 20px !important; /* Shift slightly left */
         z-index: 101 !important; /* Ensure it stays above the open header background */
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 }

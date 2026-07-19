@@ -13,3 +13,67 @@
   outline: 2px solid #fff;
   outline-offset: 4px;
 }
+
+/* Navigation Arrow Wrapper & Buttons */
+.circular-gallery-wrapper-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75); /* White fill, reduced opacity */
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #000000; /* Black arrow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-arrow-btn:hover {
+  background: #ffffff; /* Solid white on hover */
+  color: #000000; /* Stays black */
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-arrow-btn--left {
+  left: 40px;
+}
+
+.gallery-arrow-btn--right {
+  right: 40px;
+}
+
+.gallery-arrow-btn .material-symbols-outlined {
+  color: #000000 !important;
+}
+
+@media (max-width: 768px) {
+  .gallery-arrow-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .gallery-arrow-btn--left {
+    left: 16px;
+  }
+  .gallery-arrow-btn--right {
+    right: 16px;
+  }
+}
