@@ -9,7 +9,7 @@ const Footer = () => {
         
         <div className="footer-brand">
           <div className="footer-logo">
-            <img src="/logo.png" alt="Blisstown Logo" className="footer-logo-img" width="110" height="44" />
+            <img src="/logo.webp" alt="Blisstown Logo" className="footer-logo-img" width="110" height="44" />
           </div>
           <p className="footer-description">
             Pioneering the landscape of luxury development with an unwavering commitment to architectural integrity and timeless design.
